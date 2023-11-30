@@ -3,7 +3,6 @@ pandas
 category_encoders
 shap==0.43.0
 numpy
-scikit-learn==1.3.2
+scikit-learn==1.2.2
 matplotlib
 catboost==1.2.2
-pickle
