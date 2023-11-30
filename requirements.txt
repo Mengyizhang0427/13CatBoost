@@ -1,8 +1,8 @@
 streamlit==1.27.0
 pandas
 category_encoders
-shap==0.42.1
+shap==0.43.0
 numpy
-scikit-learn==1.0.2
+scikit-learn==1.3.2
 matplotlib
-catboost
+catboost==1.2.2
