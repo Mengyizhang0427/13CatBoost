@@ -32,7 +32,7 @@ with open('13data_max.pkl', 'rb') as f:
     data_max = pickle.load(f)
 with open('13data_min.pkl', 'rb') as f:
     data_min = pickle.load(f)
-with open('13CatBoost_explainer.pkl', 'rb') as f:
+with open('CatBoost_explainer.pkl', 'rb') as f:
     explainer = pickle.load(f)
 
 
