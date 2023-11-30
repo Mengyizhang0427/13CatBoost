@@ -6,4 +6,3 @@ numpy
 scikit-learn==1.2.2
 matplotlib
 catboost==1.2.2
-numba==0.57.1
