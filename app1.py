@@ -46,7 +46,7 @@ if st.button("Submit"):
     X['alt']=data['alt']
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
-    y=data["30day"]
+    
     st.write('Raw data:')
     st.dataframe(X)
     X = (X-data_min)/(data_max-data_min)
@@ -58,25 +58,25 @@ if st.button("Submit"):
     pred = probas[:, 1]
     best_threshold=0.4457025818600448
     y_pred = (pred >= best_threshold).astype(int)
-    # 计算混淆矩阵
-    tn, fp, fn, tp = confusion_matrix(y, y_pred).ravel()
-    # 计算特异性
-    specificity = tn / (tn + fp)
-    # 计算敏感性（召回率）
-    sensitivity = tp / (tp + fn)
-    #精确率，F1
-    precision=precision_score(y, y_pred)
-    F1=f1_score(y, y_pred)
-    # 计算AUC
-    auc = roc_auc_score(y, pred)    
-
+    if '30day' in data.columns:
+        y=data["30day"]
+        # 计算混淆矩阵
+        tn, fp, fn, tp = confusion_matrix(y, y_pred).ravel()
+        # 计算特异性
+        specificity = tn / (tn + fp)
+        # 计算敏感性（召回率）
+        sensitivity = tp / (tp + fn)
+        #精确率，F1
+        precision=precision_score(y, y_pred)
+        F1=f1_score(y, y_pred)
+        # 计算AUC
+        auc = roc_auc_score(y, pred)    
+        st.text(f"AUC value of prediction result{auc}.")
     #shap_values2 = explainer(X)
-    
     # Output prediction
     result=pd.DataFrame()
     result["Predicted_result"]=y_pred
     result["Predicted_probability"]=pred
-    st.text(f"AUC value of prediction result{auc}.")
     csv = result.to_csv(index=False)
     st.download_button(label='Download CSV', data=csv, file_name='result.csv', mime='text/csv')
     #st.set_option('deprecation.showPyplotGlobalUse', False)
