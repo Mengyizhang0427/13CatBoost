@@ -78,7 +78,7 @@ if st.button("Submit"):
     result["Predicted_result"]=y_pred
     result["Predicted_probability"]=pred
     csv = result.to_csv(index=False)
-    st.download_button(label='Download CSV', data=csv, file_name='result.csv', mime='text/csv')
+    st.download_button(label='Download result', data=csv, file_name='result.csv', mime='text/csv')
     #st.set_option('deprecation.showPyplotGlobalUse', False)
     #fig=shap.plots.bar(shap_values2[0])
     #st.pyplot(fig)
