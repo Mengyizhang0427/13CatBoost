@@ -54,7 +54,8 @@ if st.button("Submit"):
     st.dataframe(X)
     # Get prediction
     prediction = clf.predict(X)
-    pred=clf.predict_proba(X)[0][1]
+    probas = clf.predict_proba(X)
+    pred = probas[:, 1]
     best_threshold=0.4457025818600448
     y_pred = (pred >= best_threshold).astype(int)
     # 计算混淆矩阵
