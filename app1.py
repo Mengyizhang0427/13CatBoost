@@ -46,7 +46,6 @@ if st.button("Submit"):
     X['alt']=data['alt']
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
-    y=pd.DataFrame()
     y=data["30day"]
     st.write('Raw data:')
     st.dataframe(X)
