@@ -71,7 +71,7 @@ if st.button("Submit"):
         F1=f1_score(y, y_pred)
         # 计算AUC
         auc = roc_auc_score(y, pred)    
-        st.text(f"AUC value of prediction result{auc}.")
+        st.text(f"AUC value of prediction result: {auc}.")
     #shap_values2 = explainer(X)
     # Output prediction
     result=pd.DataFrame()
