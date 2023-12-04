@@ -16,7 +16,7 @@ from sklearn.metrics import confusion_matrix
 # Title
 st.header("CatBoost ACLF death prediction model")
 #input
-uploaded_file = st.file_uploader("Please upload the Excel file(The file must contain the following columns：'INR','age','bilirubin','resp_rate', 'albumin','sodium','heart_rate','sbp','spo2','alt','temperature','platelet_count','30day')", )
+uploaded_file = st.file_uploader("Please upload the Excel file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)", )
 
 with open('13CatBoost.pkl', 'rb') as f:
     clf = pickle.load(f)
