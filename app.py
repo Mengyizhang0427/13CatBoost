@@ -13,7 +13,7 @@ import numpy as np
 # Title
 st.header("CatBoost ACLF death prediction model")
 #input
-st.sidebar("Please enter each factor below according to the model range")
+st.sidebar.text("Please enter each factor below according to the model range")
 INR=st.sidebar.number_input("INR(Norm:0.8-1.2,model range:0.9-12)",min_value=0.9, max_value=12)
 age=st.sidebar.number_input("age(year,model range:21-90)",min_value=21, max_value=90)
 bilirubin=st.sidebar.number_input("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)",min_value=0, max_value=50)
