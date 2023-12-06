@@ -66,7 +66,7 @@ if st.button("Submit"):
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
     result=pd.DataFrame()
-    
+    within_range=[]
     for i in range(len(X)):
         if X.iloc[i]['INR']<0.8 or X.iloc[i]['INR']>12 or\
         X.iloc[i]['age']<21 or X.iloc[i]['age']>90 or\
@@ -80,15 +80,17 @@ if st.button("Submit"):
         X.iloc[i]['alt']<10 or X.iloc[i]['alt']>400 or\
         X.iloc[i]['temperature']<35 or X.iloc[i]['temperature']>50 or\
         X.iloc[i]['platelet_count']<0 or X.iloc[i]['platelet_count']>500 :
-            X[i]['is_within_range']='NO' 
+            h='NO'
+            within_range.append(h)
         else:
-            X[i]['is_within_range']='YES'
+            h='YES'
+            within_range.append(h)
         
     st.write('Raw data:')
     st.dataframe(X)
     X1 = pd.DataFrame()
-    X1 = (X.iloc[:, :-1]-data_min)/(data_max-data_min)
-    X1['is_within_range']=X['is_within_range']
+    X1 = (X-data_min)/(data_max-data_min)
+    X1['is_within_range']=within_range
     st.write('Normalized data:')
     st.dataframe(X)
     # Get prediction
