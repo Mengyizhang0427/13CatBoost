@@ -23,7 +23,7 @@ sodium=st.sidebar.number_input("sodium(mEq/L,Nrom:135-145,model range:0-200)",mi
 heart_rate=st.sidebar.number_input("heart rate(bpm,Norm:60-100,model range:0-300)",min_value=0.0, max_value=300.0)
 sbp=st.sidebar.number_input("sbp(mmHg,Norm:90-120,model range:0-400)",min_value=0.0, max_value=400.0)
 spo2=st.sidebar.number_input("spo2(%,Norm:95-100,model range:0-100)",min_value=0.0, max_value=100.0)
-alt=st.sidebar.number_input("alt(IU/L,Norm:7-56,model range:10-400)",min_value=10.0, max_value=400.0)
+alt=st.sidebar.number_input("alt(IU/L,Norm:7-56,model range:10-4000)",min_value=10.0, max_value=4000.0)
 temperature=st.sidebar.number_input("temperature(°C,Norm:36.5-37.5,model range:35-50)",min_value=35.0, max_value=50.0)
 platelet_count=st.sidebar.number_input("platelet count(K/μL,Norm:150-450,model range:0-500)",min_value=0.0, max_value=500.0)
 
