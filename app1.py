@@ -20,7 +20,8 @@ df=pd.read_csv('example.csv')
 example = df.to_csv(index=False)
 st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
 #input
-uploaded_file = st.file_uploader("Please upload the Excel file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)",  type=['csv'])
+uploaded_file = st.file_uploader("Please upload the csv file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)",type=['csv'])
+
 with open('13CatBoost.pkl', 'rb') as f:
     clf = pickle.load(f)
 with open('13data_max.pkl', 'rb') as f:
