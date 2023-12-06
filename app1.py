@@ -30,7 +30,7 @@ st.text("sodium(mEq/L,Nrom:135-145,model range:0-200)")
 st.text("heart rate(bpm,Norm:60-100,model range:0-300)")
 st.text("sbp(mmHg,Norm:90-120,model range:0-400)")
 st.text("spo2(%,Norm:95-100,model range:0-100)")
-st.text("alt(IU/L,Norm:7-56,model range:10-400)")
+st.text("alt(IU/L,Norm:7-56,model range:10-4000)")
 st.text("temperature(°C,Norm:36.5-37.5,model range:35-50)")
 st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
 st.text("If the range of the data does not meet the model range, the prediction result is None")
@@ -77,7 +77,7 @@ if st.button("Submit"):
         X.iloc[i]['heart_rate']<0 or X.iloc[i]['heart_rate']>300 or\
         X.iloc[i]['sbp']<0 or X.iloc[i]['sbp']>400 or\
         X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
-        X.iloc[i]['alt']<10 or X.iloc[i]['alt']>400 or\
+        X.iloc[i]['alt']<10 or X.iloc[i]['alt']>4000 or\
         X.iloc[i]['temperature']<35 or X.iloc[i]['temperature']>50 or\
         X.iloc[i]['platelet_count']<0 or X.iloc[i]['platelet_count']>500 :
             h='NO'
