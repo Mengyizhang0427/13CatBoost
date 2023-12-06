@@ -34,7 +34,7 @@ with open('13data_min.pkl', 'rb') as f:
 
 # If button is pressed
 if st.button("Submit"):
-    data = pd.read_excel(uploaded_file)
+    data = pd.read_csv(uploaded_file)
     # Unpickle classifier
     # Store inputs into dataframe
     X = pd.DataFrame()
