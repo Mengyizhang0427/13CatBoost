@@ -24,16 +24,16 @@ st.text("The range of factors is as follows:")
 st.text("INR(Norm:0.8-1.2,model range:0.9-12)")
 st.text("age(year,model range:21-90))")
 st.text("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)")
-st.text("resp_rate(bpm,Norm:12-20,model range:0-70)")
+st.text("resp rate(bpm,Norm:12-20,model range:0-70)")
 st.text("albumin(g/dL,Norm:3.5-5,model range:0-10)")
 st.text("sodium(mEq/L,Nrom:135-145,model range:0-200)")
-st.text("heart_rate(bpm,Norm:60-100,model range:0-300)")
+st.text("heart rate(bpm,Norm:60-100,model range:0-300)")
 st.text("sbp(mmHg,Norm:90-120,model range:0-400)")
 st.text("spo2(%,Norm:95-100,model range:0-100)")
 st.text("alt(IU/L,Norm:7-56,model range:10-400)")
 st.text("temperature(°C,Norm:36.5-37.5,model range:35-50)")
 st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
-
+st.text("If the range of the data does not meet the model range, the prediction result is None")
 #input
 uploaded_file = st.file_uploader("Please upload the csv file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)",type=['csv'])
 
@@ -65,14 +65,41 @@ if st.button("Submit"):
     X['alt']=data['alt']
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
-    
+    for i in range(len(X)):
+        if X.iloc[i]['INR']<0.8 or X.iloc[i]['INR']>12 or\
+        X.iloc[i]['age']<21 or X.iloc[i]['age']>90 or\
+        X.iloc[i]['bilirubin']<0 or X.iloc[i]['bilirubin']>50 or\
+        X.iloc[i]['resp_rate']<0 or X.iloc[i]['resp_rate']>70 or\
+        X.iloc[i]['albumin']<0 or X.iloc[i]['albumin']>10 or\
+        X.iloc[i]['sodium']<0 or X.iloc[i]['sodium']>200 or\
+        X.iloc[i]['heart_rate']<0 or X.iloc[i]['heart_rate']>300 or\
+        X.iloc[i]['sbp']<0 or X.iloc[i]['sbp']>400 or\
+        X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
+        X.iloc[i]['alt']<10 or X.iloc[i]['alt']>400 or\
+        X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
+        X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
+        
+
+
+
+
+st.text("alt(IU/L,Norm:7-56,model range:10-400)")
+st.text("temperature(°C,Norm:36.5-37.5,model range:35-50)")
+st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
     st.write('Raw data:')
     st.dataframe(X)
     X = (X-data_min)/(data_max-data_min)
     st.write('Normalized data:')
     st.dataframe(X)
     # Get prediction
-    prediction = clf.predict(X)
+    def make_prediction(X,data):
+        if factor1 < min_value_factor1 or factor1 > max_value_factor1 or \
+        factor2 < min_value_factor2 or factor2 > max_value_factor2 or \
+        factor3 < min_value_factor3 or factor3 > max_value_factor3:
+            return None  
+        else:
+            prediction = your_model.predict([factor1, factor2, factor3])
+            return prediction
     probas = clf.predict_proba(X)
     pred = probas[:, 1]
     best_threshold=0.4457025818600448
