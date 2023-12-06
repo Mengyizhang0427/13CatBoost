@@ -20,7 +20,7 @@ df=pd.read_csv('example.csv')
 def download_excel():
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV File</a>'
+    href = f'<a href="df:file/csv;base64,{b64}" download="df.csv">Download CSV File</a>'
     st.markdown(href, unsafe_allow_html=True)
 st.download_button(label='Download Excel File', on_click=download_excel)
 #st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
