@@ -65,6 +65,7 @@ if st.button("Submit"):
     X['alt']=data['alt']
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
+    result=pd.DataFrame()
     for i in range(len(X)):
         if X.iloc[i]['INR']<0.8 or X.iloc[i]['INR']>12 or\
         X.iloc[i]['age']<21 or X.iloc[i]['age']>90 or\
@@ -76,31 +77,27 @@ if st.button("Submit"):
         X.iloc[i]['sbp']<0 or X.iloc[i]['sbp']>400 or\
         X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
         X.iloc[i]['alt']<10 or X.iloc[i]['alt']>400 or\
-        X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
-        X.iloc[i]['spo2']<0 or X.iloc[i]['spo2']>100 or\
+        X.iloc[i]['temperature']<35 or X.iloc[i]['temperature']>50 or\
+        X.iloc[i]['platelet_count']<0 or X.iloc[i]['platelet_count']>500 :
+            X[i]['is_within_range']=NO 
+        else:
+            X[i]['is_within_range']=YES
         
-
-
-
-
-st.text("alt(IU/L,Norm:7-56,model range:10-400)")
-st.text("temperature(°C,Norm:36.5-37.5,model range:35-50)")
-st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
     st.write('Raw data:')
     st.dataframe(X)
-    X = (X-data_min)/(data_max-data_min)
+    X1 = pd.DataFrame()
+    X1 = (X.iloc[:, :-1]-data_min)/(data_max-data_min)
+    X1['is_within_range']=X['is_within_range']
     st.write('Normalized data:')
     st.dataframe(X)
     # Get prediction
-    def make_prediction(X,data):
-        if factor1 < min_value_factor1 or factor1 > max_value_factor1 or \
-        factor2 < min_value_factor2 or factor2 > max_value_factor2 or \
-        factor3 < min_value_factor3 or factor3 > max_value_factor3:
-            return None  
+    def make_prediction(X):
+        if X['is_within_range']=YES:
+            prediction = clf.predict_proba(X.iloc[:, :-1])
+            return prediction     
         else:
-            prediction = your_model.predict([factor1, factor2, factor3])
-            return prediction
-    probas = clf.predict_proba(X)
+            return None
+    probas = make_prediction(X1)
     pred = probas[:, 1]
     best_threshold=0.4457025818600448
     y_pred = (pred >= best_threshold).astype(int)
@@ -120,7 +117,7 @@ st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
         st.text(f"AUC value of prediction result: {auc}.")
     #shap_values2 = explainer(X)
     # Output prediction
-    result=pd.DataFrame()
+    result['is_within_range']=X1['is_within_range']
     result["Predicted_result"]=y_pred
     result["Predicted_probability"]=pred
     csv = result.to_csv(index=False)
