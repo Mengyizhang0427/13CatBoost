@@ -66,6 +66,7 @@ if st.button("Submit"):
     X['temperature']=data['temperature']
     X['platelet_count']=data['platelet_count']
     result=pd.DataFrame()
+    
     for i in range(len(X)):
         if X.iloc[i]['INR']<0.8 or X.iloc[i]['INR']>12 or\
         X.iloc[i]['age']<21 or X.iloc[i]['age']>90 or\
@@ -79,9 +80,9 @@ if st.button("Submit"):
         X.iloc[i]['alt']<10 or X.iloc[i]['alt']>400 or\
         X.iloc[i]['temperature']<35 or X.iloc[i]['temperature']>50 or\
         X.iloc[i]['platelet_count']<0 or X.iloc[i]['platelet_count']>500 :
-            X[i]['is_within_range']=NO 
+            X[i]['is_within_range']='NO' 
         else:
-            X[i]['is_within_range']=YES
+            X[i]['is_within_range']='YES'
         
     st.write('Raw data:')
     st.dataframe(X)
@@ -92,7 +93,7 @@ if st.button("Submit"):
     st.dataframe(X)
     # Get prediction
     def make_prediction(X):
-        if X['is_within_range']==YES:
+        if X['is_within_range']=='YES':
             prediction = clf.predict_proba(X.iloc[:, :-1])
             return prediction     
         else:
