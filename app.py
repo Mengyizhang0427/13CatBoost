@@ -53,6 +53,7 @@ if st.button("Submit"):
     # Get prediction
     prediction = clf.predict(X)
     pred=clf.predict_proba(X)[0][1]
+    y_pred = (pred >= best_threshold).astype(int)
     shap_values2 = explainer(X)
     
     # Output prediction
