@@ -17,10 +17,15 @@ from sklearn.metrics import confusion_matrix
 st.header("CatBoost ACLF death prediction model")
 #example
 df=pd.read_csv('example.csv')
-example= df.to_csv(index=False)
-st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
+def download_excel():
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV File</a>'
+    st.markdown(href, unsafe_allow_html=True)
+st.download_button(label='Download Excel File', on_click=download_excel)
+#st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
 #input
-uploaded_file = st.file_uploader("Please upload the csv file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)", )
+uploaded_file = st.file_uploader("Please upload the Excel file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)", )
 
 with open('13CatBoost.pkl', 'rb') as f:
     clf = pickle.load(f)
@@ -34,7 +39,7 @@ with open('13data_min.pkl', 'rb') as f:
 
 # If button is pressed
 if st.button("Submit"):
-    data = pd.read_csv(uploaded_file)
+    data = pd.read_excel(uploaded_file)
     # Unpickle classifier
     # Store inputs into dataframe
     X = pd.DataFrame()
