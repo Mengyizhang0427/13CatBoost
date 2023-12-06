@@ -20,6 +20,21 @@ df=pd.read_csv('example.csv')
 example = df.to_csv(index=False)
 st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
 #input
+st.text("The range of factors is as follows:")
+st.text("INR(Norm:0.8-1.2,model range:0.9-12)")
+st.text("age(year,model range:21-90))")
+st.text("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)")
+st.text("resp_rate(bpm,Norm:12-20,model range:0-70)")
+st.text("albumin(g/dL,Norm:3.5-5,model range:0-10)")
+st.text("sodium(mEq/L,Nrom:135-145,model range:0-200)")
+st.text("heart_rate(bpm,Norm:60-100,model range:0-300)")
+st.text("sbp(mmHg,Norm:90-120,model range:0-400)")
+st.text("spo2(%,Norm:95-100,model range:0-100)")
+st.text("alt(IU/L,Norm:7-56,model range:10-400)")
+st.text("temperature(°C,Norm:36.5-37.5,model range:35-50)")
+st.text("platelet count(K/μL,Norm:150-450,model range:0-500)")
+
+#input
 uploaded_file = st.file_uploader("Please upload the csv file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)",type=['csv'])
 
 with open('13CatBoost.pkl', 'rb') as f:
