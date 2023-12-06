@@ -106,7 +106,15 @@ if st.button("Submit"):
         return pred
     pred = make_prediction(X1)
     best_threshold=0.4457025818600448
-    y_pred = (pred >= best_threshold).astype(int)
+    y_pred=[]
+    for pre in pred:
+        if pre is not None:
+            if pre >=best_threshold:
+                y_pred.append(1)
+            else:
+                y_pred.append(0)
+        else:
+            y_pred.append(None)
     if '30day' in data.columns:
         y=data["30day"]
         # 计算混淆矩阵
