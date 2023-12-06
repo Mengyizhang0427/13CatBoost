@@ -95,13 +95,15 @@ if st.button("Submit"):
     st.dataframe(X)
     # Get prediction
     def make_prediction(X):
-        if X['is_within_range']='YES':
-            prediction = clf.predict_proba(X.iloc[:, :-1])
-            return prediction     
-        else:
-            return None
-    probas = make_prediction(X1)
-    pred = probas[:, 1]
+        pred=[]
+        for i in range(len(X)):
+            if X.iloc[i]['is_within_range']=='YES':
+                prediction = clf.predict_proba(X.iloc[i, :-1])[:, 1]
+                pred.append(prediction)     
+            else:
+                pred.append(None)
+        return pred
+    pred = make_prediction(X1)
     best_threshold=0.4457025818600448
     y_pred = (pred >= best_threshold).astype(int)
     if '30day' in data.columns:
