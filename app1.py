@@ -92,7 +92,7 @@ if st.button("Submit"):
     st.dataframe(X)
     # Get prediction
     def make_prediction(X):
-        if X['is_within_range']=YES:
+        if X['is_within_range']==YES:
             prediction = clf.predict_proba(X.iloc[:, :-1])
             return prediction     
         else:
