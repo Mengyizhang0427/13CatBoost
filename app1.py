@@ -20,7 +20,7 @@ df=pd.read_csv('example.csv')
 example = df.to_csv(index=False)
 st.download_button(label='Download example', data=example, file_name='example.csv', mime='csv')
 #input
-st.write("The range of factors is as follows:")
+st.write("The factors are explained as follows：")
 st.write("INR(Norm:0.8-1.2,model range:0.9-12)")
 st.write("age(year,model range:21-90))")
 st.write("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)")
@@ -33,6 +33,7 @@ st.write("spo2(%,Norm:95-100,model range:0-100)")
 st.write("alt(IU/L,Norm:7-56,model range:10-4000)")
 st.write("temperature(°C,Norm:36.5-37.5,model range:35-50)")
 st.write("platelet count(K/μL,Norm:150-450,model range:0-500)")
+st.write("30day represents the death within 30 days, 1 represents death, 0 represents survival")
 #input
 uploaded_file = st.file_uploader("Please upload the csv file(If the range of the data does not meet the model range, the prediction result is None)",type=['csv'])
 
