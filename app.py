@@ -17,7 +17,7 @@ st.text("Please enter each parameter on the left according to the model range fo
 INR=st.sidebar.number_input("INR(Norm:0.8-1.2,model range:0.9-12)",min_value=0.9, max_value=12.0)
 age=st.sidebar.number_input("age(year,model range:21-90)",min_value=21, max_value=90)
 bilirubin=st.sidebar.number_input("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)",min_value=0.0, max_value=50.0)
-resp_rate=st.sidebar.number_input("resp_rate(bpm,Norm:12-20,model range:0-70)",min_value=0.0, max_value=70.0)
+resp_rate=st.sidebar.number_input("resp rate(bpm,Norm:12-20,model range:0-70)",min_value=0.0, max_value=70.0)
 albumin=st.sidebar.number_input("albumin(g/dL,Norm:3.5-5,model range:0-10)",min_value=0.0, max_value=10.0)
 sodium=st.sidebar.number_input("sodium(mEq/L,Nrom:135-145,model range:0-200)",min_value=0.0, max_value=200.0)
 heart_rate=st.sidebar.number_input("heart rate(bpm,Norm:60-100,model range:0-300)",min_value=0.0, max_value=300.0)
