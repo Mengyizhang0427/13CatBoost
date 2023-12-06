@@ -91,7 +91,7 @@ if st.button("Submit"):
     X1 = (X-data_min)/(data_max-data_min)
     X1['is_within_range']=within_range
     st.write('Normalized data:')
-    st.dataframe(X)
+    st.dataframe(X1)
     # Get prediction
     def make_prediction(X):
         pred=[]
@@ -116,17 +116,21 @@ if st.button("Submit"):
             y_pred.append(None)
     if '30day' in data.columns:
         y=data["30day"]
+        data_y=pd.DataFrame()
+        data_y['y']=y
+        data_y['y_pred']=y_pred
+        df_y = data_y.dropna()
         # 计算混淆矩阵
-        tn, fp, fn, tp = confusion_matrix(y, y_pred).ravel()
+        tn, fp, fn, tp = confusion_matrix(df_y['y'], df_y['y_pred']).ravel()
         # 计算特异性
         specificity = tn / (tn + fp)
         # 计算敏感性（召回率）
         sensitivity = tp / (tp + fn)
         #精确率，F1
-        precision=precision_score(y, y_pred)
-        F1=f1_score(y, y_pred)
+        precision=precision_score(df_y['y'], df_y['y_pred'])
+        F1=f1_score(df_y['y'], df_y['y_pred'])
         # 计算AUC
-        auc = roc_auc_score(y, pred)    
+        auc = roc_auc_score(df_y['y'], df_y['y_pred'])    
         st.text(f"AUC value of prediction result: {auc}.")
     #shap_values2 = explainer(X)
     # Output prediction
