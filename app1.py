@@ -33,9 +33,8 @@ st.write("spo2(%,Norm:95-100,model range:0-100)")
 st.write("alt(IU/L,Norm:7-56,model range:10-4000)")
 st.write("temperature(°C,Norm:36.5-37.5,model range:35-50)")
 st.write("platelet count(K/μL,Norm:150-450,model range:0-500)")
-st.write("If the range of the data does not meet the model range, the prediction result is None")
 #input
-uploaded_file = st.file_uploader("Please upload the csv file(The file must contain the following columns：INR,age,bilirubin,resp_rate, albumin,sodium,heart_rate,sbp,spo2,alt,temperature,platelet_count,30day)",type=['csv'])
+uploaded_file = st.file_uploader("Please upload the csv file(If the range of the data does not meet the model range, the prediction result is None)",type=['csv'])
 
 with open('13CatBoost.pkl', 'rb') as f:
     clf = pickle.load(f)
