@@ -99,7 +99,7 @@ if st.button("Submit"):
         for i in range(len(X)):
             if X.iloc[i]['is_within_range']=='YES':
                 prediction = clf.predict_proba(X.iloc[i, :-1])
-                prob=prediction[:, 1]
+                prob=prediction[0][1]
                 pred.append(prob)     
             else:
                 pred.append(None)
