@@ -22,7 +22,7 @@ st.download_button(label='Download example', data=example, file_name='example.cs
 #input
 st.write("The factors are explained as follows：")
 st.write("INR(Norm:0.8-1.2,model range:0.8-12)")
-st.write("age(year,model range:21-90))")
+st.write("age(year,model range:21-90)")
 st.write("Total bilirubin(mg/dL,Norm:0.3-1.9,model range:0-50)")
 st.write("resp rate(bpm,Norm:12-20,model range:0-70)")
 st.write("albumin(g/dL,Norm:3.5-5,model range:0-10)")
